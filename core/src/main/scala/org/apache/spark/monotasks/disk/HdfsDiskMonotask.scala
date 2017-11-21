@@ -150,7 +150,7 @@ private[spark] abstract class HdfsDiskMonotask(
     if (localDirectory.isEmpty) {
       logWarning(s"No HDFS blocks for path $pathString are stored locally.")
     }
-    localDirectory
+    return localDirectory.map(_.stripPrefix("file:"))
   }
 
   /**
